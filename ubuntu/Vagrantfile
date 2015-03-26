@@ -26,16 +26,18 @@ Vagrant.configure("2") do |config|
   config.vm.define "vb-01" do |config|
     config.vm.host_name = "vb-01"
     config.vm.network "forwarded_port", id: 'ssh', guest: 22, host: 2222
-    config.vm.provision :shell, path: "role_base-01.sh"
-#   config.vm.provision :shell, path: "desktop.sh"
+    config.vm.provision "shell",
+      inline: "curl https://raw.githubusercontent.com/rudibroekhuizen/puppet-role_base/master/files/bootstrap.sh > bootstrap.sh; chmod +x bootstrap.sh;./bootstrap.sh"
+#   config.vm.provision "shell", path: "desktop.sh"
   end
 
 # Specific settings for box "vb-02":
   config.vm.define "vb-02" do |config|
     config.vm.host_name = "vb-02"
     config.vm.network "forwarded_port", id: 'ssh', guest: 22, host: 2223
-    config.vm.provision :shell, path: "role_base-02.sh"
-#   config.vm.provision :shell, path: "desktop.sh"
+    config.vm.provision "shell",
+      inline: "curl https://raw.githubusercontent.com/rudibroekhuizen/puppet-role_base/master/files/bootstrap.sh > bootstrap.sh; chmod +x bootstrap.sh;./bootstrap.sh"
+#   config.vm.provision "shell", path: "desktop.sh"
   end
 
 end
