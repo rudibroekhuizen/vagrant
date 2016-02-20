@@ -21,9 +21,8 @@ Vagrant.configure("2") do |config|
   config.vm.define "vb-01" do |config|
     config.vm.host_name = "vb-01"
     config.vm.network "forwarded_port", id: 'rdp', guest: 3389, host: 33389
-#   config.vm.provision "shell",
-#     inline: "curl https://raw.githubusercontent.com/rudibroekhuizen/puppet-role_base/master/files/bootstrap.sh > bootstrap.sh; chmod +x bootstrap.sh;./bootstrap.sh client-burp"
-#   config.vm.provision "shell", path: "desktop.sh"
+    config.vm.provision "shell",
+      inline: "Invoke-WebRequest https://raw.githubusercontent.com/rudibroekhuizen/puppet-windows_role_base/master/files/Bootstrap.bat -OutFile "C:\Windows\Temp\Bootstrap.bat" | Out-Null; Start-Process C:\Windows\Temp\Bootstrap.bat"
   end
 
 end
