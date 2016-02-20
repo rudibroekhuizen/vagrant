@@ -1,8 +1,10 @@
 vagrant
 =======
 
-* go to /opt/vagrant
-* git clone https://github.com/rudibroekhuizen/vagrant vagrant-files
+Do not use sudo!
+
+* git clone https://github.com/rudibroekhuizen/vagrant ~/
+
 * vagrant up
 * vagrant halt
 * vagrant destroy
