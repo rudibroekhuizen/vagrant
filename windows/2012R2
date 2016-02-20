@@ -1,0 +1,29 @@
+box      = "opentable/win-2012r2-standard-amd64-nocm"
+#url      = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
+
+# Settings for all boxes:
+Vagrant.configure("2") do |config|
+    config.vm.box = box
+    config.vm.box_url = url
+    config.vm.provider "virtualbox" do |v|
+      v.gui = true
+#     v.customize ["modifyvm", :id, "--ostype", "Ubuntu_64"]
+      v.customize ["modifyvm", :id, "--memory", "2024"]
+      v.customize ["modifyvm", :id, "--vram", "16"]
+      v.customize ["modifyvm", :id, "--nic2", "hostonly", "--nictype2", "82540EM", "--cableconnected2", "on", "--hostonlyadapter2", "vboxnet0"]
+      v.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+#     v.customize ["modifyvm", :id, "--accelerate3d", "on"]
+      v.customize ["modifyvm", :id, "--accelerate2dvideo", "on"]
+#     v.customize ["modifyvm", :id, "--audio", "dsound"]
+    end
+    
+# Specific settings for box "vb-01":
+  config.vm.define "vb-02" do |config|
+    config.vm.host_name = "vb-02"
+    config.vm.network "forwarded_port", id: 'rdp', guest: 3389, host: 33389
+#   config.vm.provision "shell",
+#     inline: "curl https://raw.githubusercontent.com/rudibroekhuizen/puppet-role_base/master/files/bootstrap.sh > bootstrap.sh; chmod +x bootstrap.sh;./bootstrap.sh client-burp"
+#   config.vm.provision "shell", path: "desktop.sh"
+  end
+
+end
