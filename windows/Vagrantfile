@@ -1,5 +1,5 @@
-box  = "opentable/win-2012r2-standard-amd64-nocm"
-#url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
+box = "opentable/win-2012r2-standard-amd64-nocm"
+url = 
 
 # Settings for all boxes:
 Vagrant.configure("2") do |config|
@@ -7,7 +7,6 @@ Vagrant.configure("2") do |config|
 #   config.vm.box_url = url
     config.vm.provider "virtualbox" do |v|
       v.gui = true
-#     v.customize ["modifyvm", :id, "--ostype", "Ubuntu_64"]
       v.customize ["modifyvm", :id, "--memory", "2024"]
       v.customize ["modifyvm", :id, "--vram", "16"]
       v.customize ["modifyvm", :id, "--nic2", "hostonly", "--nictype2", "82540EM", "--cableconnected2", "on", "--hostonlyadapter2", "vboxnet0"]
@@ -21,8 +20,8 @@ Vagrant.configure("2") do |config|
   config.vm.define "vb-01" do |config|
     config.vm.host_name = "vb-01"
     config.vm.network "forwarded_port", id: 'rdp', guest: 3389, host: 33389
-    #config.vm.provision "shell",
-    #  inline: "Invoke-WebRequest https://raw.githubusercontent.com/rudibroekhuizen/puppet-windows_role_base/master/files/Bootstrap.bat -OutFile "C:\Windows\Temp\Bootstrap.bat" | Out-Null; Start-Process C:\Windows\Temp\Bootstrap.bat"
+    config.vm.provision "shell",
+      inline: "Invoke-WebRequest https://raw.githubusercontent.com/rudibroekhuizen/puppet-windows_role_base/master/files/Bootstrap.bat -OutFile C:\Windows\Temp\Bootstrap.bat | Out-Null; Start-Process C:\Windows\Temp\Bootstrap.bat"
   end
 
 end
