@@ -1,10 +1,14 @@
+#16.04
+box = "xenial64"
+url = "https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-vagrant.box"
+
 #14.04
-box      = "trusty64"
-url      = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+#box = "trusty64"
+#url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
 
 #12.04
-# box      = "precise64"
-# url      = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
+# box = "precise64"
+# url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
 
 # Settings for all boxes:
 Vagrant.configure("2") do |config|
