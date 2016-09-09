@@ -1,6 +1,5 @@
 #16.04
-box = "xenial64"
-url = "https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-vagrant.box"
+box = "bento/ubuntu-16.04"
 
 #14.04
 #box = "trusty64"
@@ -13,7 +12,7 @@ url = "https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd
 # Settings for all boxes:
 Vagrant.configure("2") do |config|
     config.vm.box = box
-    config.vm.box_url = url
+#   config.vm.box_url = url
     config.vm.provider "virtualbox" do |v|
       v.gui = true
       v.customize ["modifyvm", :id, "--ostype", "Ubuntu_64"]
@@ -31,17 +30,17 @@ Vagrant.configure("2") do |config|
     config.vm.host_name = "vb-01"
     config.vm.network "forwarded_port", id: 'ssh', guest: 22, host: 2222
 #   config.vm.provision "shell", path: "desktop.sh"
-    config.vm.provision "shell",
-      inline: "curl https://raw.githubusercontent.com/rudibroekhuizen/puppet-role_base/master/files/bootstrap.sh > bootstrap.sh; chmod +x bootstrap.sh;./bootstrap.sh server-burp"
+#    config.vm.provision "shell",
+#      inline: "curl https://raw.githubusercontent.com/rudibroekhuizen/puppet-role_base/master/files/bootstrap.sh > bootstrap.sh; chmod +x bootstrap.sh;./bootstrap.sh server-burp"
   end
 
 # Specific settings for box "vb-02":
-  config.vm.define "vb-02" do |config|
-    config.vm.host_name = "vb-02"
-    config.vm.network "forwarded_port", id: 'ssh', guest: 22, host: 2223
-#   config.vm.provision "shell", path: "desktop.sh"
-    config.vm.provision "shell",
-      inline: "curl https://raw.githubusercontent.com/rudibroekhuizen/puppet-role_base/master/files/bootstrap.sh > bootstrap.sh; chmod +x bootstrap.sh;./bootstrap.sh client-burp"
-  end
+##  config.vm.define "vb-02" do |config|
+##    config.vm.host_name = "vb-02"
+##    config.vm.network "forwarded_port", id: 'ssh', guest: 22, host: 2223
+##   config.vm.provision "shell", path: "desktop.sh"
+#    config.vm.provision "shell",
+##      inline: "curl https://raw.githubusercontent.com/rudibroekhuizen/puppet-role_base/master/files/bootstrap.sh > bootstrap.sh; chmod +x bootstrap.sh;./bootstrap.sh client-burp"
+##  end
 
 end
