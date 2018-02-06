@@ -8,3 +8,4 @@ sudo apt-get update
 sudo apt-get -y install ansible
 
 su vagrant -c "ssh-keygen -t rsa -f /vagrant/id_rsa -N ''"
+su vagrant -c "mv id_rsa ~/.ssh/"
