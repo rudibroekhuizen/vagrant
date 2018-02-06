@@ -5,11 +5,9 @@ box = "bento/ubuntu-16.04"
 Vagrant.configure("2") do |config|
     config.vm.box = box
     config.vm.provider "virtualbox" do |v|
-      v.gui = true
       config.vbguest.auto_update = false
       v.customize ["modifyvm", :id, "--ostype", "Ubuntu_64"]
       v.customize ["modifyvm", :id, "--memory", "4096"]
-      v.customize ["modifyvm", :id, "--vram", "16"]
     end
 
 # Specific settings for box "vb-01":
@@ -18,8 +16,13 @@ Vagrant.configure("2") do |config|
     config.vm.network "forwarded_port", id: 'ssh', guest: 22, host: 2222
     config.vm.network "private_network", ip: "192.168.56.5"
     config.vm.provision "shell", path: "ansible-control.sh"
-    config.vm.provision "shell",		
-      inline: "echo -e '192.168.56.6\n192.168.56.7' >> /etc/ansible/hosts"
+#    config.vm.provision "shell",		
+#      inline: "echo -e '192.168.56.6\n192.168.56.7' >> /etc/ansible/hosts"
+    config.vm.provision "shell", inline: <<-SHELL
+      echo -e '192.168.56.6\n192.168.56.7' >> /etc/ansible/hosts
+      echo 'host_key_checking = False' >> /etc/ansible/ansible.cfg
+    SHELL
+      
   end
 
 # Specific settings for box "vb-02":
