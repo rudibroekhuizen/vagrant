@@ -6,18 +6,18 @@ Vagrant
 git clone https://github.com/rudibroekhuizen/vagrant ~/
 ```
 
-Start
+#### Start
 ```bash
 vagrant up
 ```
 
-Connect
+#### Connect
 ```bash
 vagrant ssh vb-01
 ssh -p 2222 vagrant@localhost
 ```
 
-Stop or destroy
+#### Stop or destroy
 ```bash
 vagrant halt
 vagrant destroy
