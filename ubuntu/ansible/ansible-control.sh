@@ -12,7 +12,7 @@ su vagrant -c "ssh-keygen -t rsa -f /vagrant/id_rsa -N ''"
 su vagrant -c "mv /vagrant/id_rsa ~/.ssh/"
 
 # Add hosts to hosts file
-sed -i 's/#host_key_checking/host_key_checking/g' /etc/ansible/ansible.cfg
+echo -e '192.168.56.6\n192.168.56.7' >> /etc/ansible/hosts
 
 # Disable ssh host verification
 sed -i 's/#host_key_checking/host_key_checking/g' /etc/ansible/ansible.cfg
