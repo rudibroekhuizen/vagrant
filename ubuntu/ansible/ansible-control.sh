@@ -7,7 +7,7 @@ apt-get update
 apt-get -y install software-properties-common
 apt-add-repository -y ppa:ansible/ansible
 apt-get update
-apt-get -y install ansible
+apt-get -y install ansible git
 
 # Create Ansible user
 adduser --disabled-password --gecos "" $ANSIBLE_USER
@@ -25,8 +25,8 @@ echo -e '192.168.56.6\n192.168.56.7' >> /etc/ansible/hosts
 # Disable ssh host verification
 sed -i 's/#host_key_checking/host_key_checking/g' /etc/ansible/ansible.cfg
 
-# Change roles_path to /etc/ansible/roles
-#sed -i 's/#roles_path/roles_path/g' /etc/ansible/ansible.cfg
+# Ansible ping test
+su $ANSIBLE_USER -c "ansible all -m ping"
 
 # Download Ansible base role
-#git clone https://github.com/rudibroekhuizen/ansible-base /etc/ansible/roles/base
+su $ANSIBLE_USER -c "git clone https://github.com/rudibroekhuizen/ansible-base ~/ansible"
