@@ -1,15 +1,23 @@
 #!/bin/bash
 
+ANSIBLE_USER="ansible"
+
 # Install Ansible
-sudo apt-get update
-sudo apt-get -y install software-properties-common
-sudo apt-add-repository -y ppa:ansible/ansible
-sudo apt-get update
-sudo apt-get -y install ansible
+apt-get update
+apt-get -y install software-properties-common
+apt-add-repository -y ppa:ansible/ansible
+apt-get update
+apt-get -y install ansible
+
+# Create Ansible user
+adduser --disabled-password --gecos "" $ANSIBLE_USER
+mkdir -p /home/$ANSIBLE_USER/.ssh
+echo "$ANSIBLE_USER ALL=NOPASSWD:ALL" > /etc/sudoers.d/$ANSIBLE_USER
 
 # Set up keys
-su vagrant -c "ssh-keygen -t rsa -f /vagrant/id_rsa -N ''"
-su vagrant -c "mv /vagrant/id_rsa ~/.ssh/"
+ssh-keygen -t rsa -f /vagrant/id_rsa -N ''
+mv /vagrant/id_rsa /home/$ANSIBLE_USER/.ssh
+chown -R $ANSIBLE_USER:$ANSIBLE_USER /home/$ANSIBLE_USER/.ssh
 
 # Add hosts to hosts file
 echo -e '192.168.56.6\n192.168.56.7' >> /etc/ansible/hosts
