@@ -15,7 +15,7 @@ mkdir -p /home/$ANSIBLE_USER/.ssh
 echo "$ANSIBLE_USER ALL=NOPASSWD:ALL" > /etc/sudoers.d/$ANSIBLE_USER
 
 # Set up keys
-ssh-keygen -t rsa -f /vagrant/id_rsa -N ''
+yes | ssh-keygen -t rsa -f /vagrant/id_rsa -N ''
 mv /vagrant/id_rsa /home/$ANSIBLE_USER/.ssh
 chown -R $ANSIBLE_USER:$ANSIBLE_USER /home/$ANSIBLE_USER/.ssh
 
