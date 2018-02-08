@@ -19,3 +19,6 @@ sed -i 's/#host_key_checking/host_key_checking/g' /etc/ansible/ansible.cfg
 
 # Change roles_path to /etc/ansible/roles
 sed -i 's/#roles_path/roles_path/g' /etc/ansible/ansible.cfg
+
+# Download Ansible base role
+git clone https://github.com/rudibroekhuizen/ansible-base /etc/ansible/roles/base
