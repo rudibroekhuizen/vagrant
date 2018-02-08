@@ -16,3 +16,6 @@ echo -e '192.168.56.6\n192.168.56.7' >> /etc/ansible/hosts
 
 # Disable ssh host verification
 sed -i 's/#host_key_checking/host_key_checking/g' /etc/ansible/ansible.cfg
+
+# Change roles_path to /etc/ansible/roles
+sed -i 's/#roles_path/roles_path/g' /etc/ansible/ansible.cfg
