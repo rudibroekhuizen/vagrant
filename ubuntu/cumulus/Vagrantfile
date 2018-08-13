@@ -1,3 +1,5 @@
+# Based on https://github.com/CumulusNetworks/cldemo-vagrant/blob/master/Vagrantfile
+
 Vagrant.configure("2") do |config|
 
   simid = 1531927274
