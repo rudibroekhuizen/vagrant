@@ -26,6 +26,7 @@ Vagrant.configure("2") do |config|
     device.vm.network "private_network", virtualbox__intnet: "#{simid}_net54", ip: "192.168.0.252"
     # forwared port for kibana dashboard 
     device.vm.network "forwarded_port", id: 'http', guest: 5601, host: 5601
+    device.vm.network "forwarded_port", id: 'http', guest: 3000, host: 3000
     device.vm.provider "virtualbox" do |vbox|
       vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-all']
       vbox.customize ["modifyvm", :id, "--nictype1", "virtio"]
