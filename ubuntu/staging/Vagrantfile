@@ -2,7 +2,7 @@
 box = "bento/ubuntu-18.04"
 
 #16.04
-box = "bento/ubuntu-16.04"
+#box = "bento/ubuntu-16.04"
 
 #14.04
 #box = "trusty64"
