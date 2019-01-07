@@ -31,7 +31,7 @@ Vagrant.configure("2") do |config|
 #   config.vm.provision "shell", path: "desktop.sh"
 #   config.vm.provision "shell", inline: "apt-get install curl"
     config.vm.provision "shell",
-      inline: "curl https://raw.githubusercontent.com/rudibroekhuizen/puppet-role_base/master/files/bootstrap.sh > bootstrap.sh; chmod +x bootstrap.sh;./bootstrap.sh"
+      inline: "curl https://raw.githubusercontent.com/rudibroekhuizen/puppet-role_base/dev/files/bootstrap.sh > bootstrap.sh; chmod +x bootstrap.sh;./bootstrap.sh"
   end
 
 # Specific settings for box "vb-02":
@@ -40,7 +40,7 @@ Vagrant.configure("2") do |config|
 ##    config.vm.network "forwarded_port", id: 'ssh', guest: 22, host: 2223
 ##   config.vm.provision "shell", path: "desktop.sh"
 #    config.vm.provision "shell",
-##      inline: "curl https://raw.githubusercontent.com/rudibroekhuizen/puppet-role_base/master/files/bootstrap.sh > bootstrap.sh; chmod +x bootstrap.sh;./bootstrap.sh client-burp"
+##      inline: "curl https://raw.githubusercontent.com/rudibroekhuizen/puppet-role_base/dev/files/bootstrap.sh > bootstrap.sh; chmod +x bootstrap.sh;./bootstrap.sh client-burp"
 ##  end
 
 end
