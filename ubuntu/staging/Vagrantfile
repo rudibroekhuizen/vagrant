@@ -1,13 +1,12 @@
+#18.04
+box = "bento/ubuntu-18.04"
+
 #16.04
 box = "bento/ubuntu-16.04"
 
 #14.04
 #box = "trusty64"
 #url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-
-#12.04
-# box = "precise64"
-# url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
 
 # Settings for all boxes:
 Vagrant.configure("2") do |config|
