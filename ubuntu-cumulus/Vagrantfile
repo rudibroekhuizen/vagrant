@@ -1,0 +1,36 @@
+# Based on https://github.com/CumulusNetworks/cldemo-vagrant/blob/master/Vagrantfile
+
+Vagrant.configure("2") do |config|
+
+  # simid changes with every release of demo version cumulus
+  simid = 1538758316
+
+  config.vm.provider "virtualbox" do |v|
+    v.gui=false
+  end
+
+  ##### DEFINE VM for oob-mgmt-analytics #####
+  config.vm.define "oob-mgmt-analytics" do |device|
+    
+    device.vm.hostname = "oob-mgmt-analytics"  
+    device.vm.box = "bento/ubuntu-16.04"
+    device.vm.provider "virtualbox" do |v|
+      v.name = "#{simid}_oob-mgmt-analytics"
+      v.customize ["modifyvm", :id, '--audiocontroller', 'AC97', '--audio', 'Null']
+      v.memory = 4096
+    end
+    #   see note here: https://github.com/pradels/vagrant-libvirt#synced-folders
+    device.vm.synced_folder ".", "/vagrant", disabled: false
+
+    # NETWORK INTERFACES
+      # link for eth1 --> oob-mgmt-switch:swp1
+    device.vm.network "private_network", virtualbox__intnet: "#{simid}_net54", ip: "192.168.0.252"
+    # forwared port for kibana dashboard 
+    device.vm.network "forwarded_port", id: 'kibana', guest: 5601, host: 5601
+    device.vm.network "forwarded_port", id: 'grafana', guest: 3000, host: 3000
+    device.vm.provider "virtualbox" do |vbox|
+      vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-all']
+      vbox.customize ["modifyvm", :id, "--nictype1", "virtio"]
+    end
+  end
+end
