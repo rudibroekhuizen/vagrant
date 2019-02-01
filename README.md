@@ -1,11 +1,6 @@
 Vagrant
 =======
 
-#### Do not use sudo!
-```bash
-git clone https://github.com/rudibroekhuizen/vagrant ~/
-```
-
 #### Start
 ```bash
 vagrant up
