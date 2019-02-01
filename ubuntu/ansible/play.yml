@@ -4,7 +4,7 @@
   roles:
     - ansible-base
   vars:
-    users:
+    admin_users:
       - username: rudi.broekhuizen
         name: Rudi Broekhuizen
         ssh_key: rudi.broekhuizen.pub
