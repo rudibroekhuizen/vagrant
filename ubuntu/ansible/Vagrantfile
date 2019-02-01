@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.vm.provider :virtualbox do |vm|
       vm.memory = 2048
     end
-    haproxy.vm.provision :ansible do |ansible|
+    vb.vm.provision :ansible do |ansible|
       ansible.playbook = "play.yml"
       ansible.host_key_checking = false
     end
