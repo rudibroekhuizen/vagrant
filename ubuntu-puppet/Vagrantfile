@@ -10,19 +10,22 @@ box = "bento/ubuntu-18.04"
 
 # Settings for all boxes:
 Vagrant.configure("2") do |config|
-    config.vm.box = box
-#   config.vm.box_url = url
-    config.vm.provider "virtualbox" do |v|
-      v.gui = true
-      v.customize ["modifyvm", :id, "--ostype", "Ubuntu_64"]
-      v.customize ["modifyvm", :id, "--memory", "4096"]
-      v.customize ["modifyvm", :id, "--vram", "16"]
-      v.customize ["modifyvm", :id, "--nic2", "hostonly", "--nictype2", "82540EM", "--cableconnected2", "on", "--hostonlyadapter2", "vboxnet0"]
-      v.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
-#     v.customize ["modifyvm", :id, "--accelerate3d", "on"]
-#     v.customize ["modifyvm", :id, "--accelerate2dvideo", "on"]
-#     v.customize ["modifyvm", :id, "--audio", "dsound"]
-    end
+  
+  config.vbguest.auto_update = false  
+    
+  config.vm.box = box
+# config.vm.box_url = url
+  config.vm.provider "virtualbox" do |v|
+    v.gui = true
+    v.customize ["modifyvm", :id, "--ostype", "Ubuntu_64"]
+    v.customize ["modifyvm", :id, "--memory", "4096"]
+    v.customize ["modifyvm", :id, "--vram", "16"]
+    v.customize ["modifyvm", :id, "--nic2", "hostonly", "--nictype2", "82540EM", "--cableconnected2", "on", "--hostonlyadapter2", "vboxnet0"]
+    v.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+#   v.customize ["modifyvm", :id, "--accelerate3d", "on"]
+#   v.customize ["modifyvm", :id, "--accelerate2dvideo", "on"]
+#   v.customize ["modifyvm", :id, "--audio", "dsound"]
+  end
 
 # Specific settings for box "vb-01":
   config.vm.define "vb-01" do |config|
