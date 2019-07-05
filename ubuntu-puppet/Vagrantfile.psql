@@ -1,0 +1,42 @@
+#18.04
+box = "bento/ubuntu-18.04"
+
+# Settings for all boxes:
+Vagrant.configure("2") do |config|
+  
+  config.vbguest.auto_update = false  
+    
+  config.vm.box = box
+# config.vm.box_url = url
+  config.vm.provider "virtualbox" do |v|
+    v.gui = true
+    v.customize ["modifyvm", :id, "--ostype", "Ubuntu_64"]
+    v.customize ["modifyvm", :id, "--memory", "4096"]
+    v.customize ["modifyvm", :id, "--vram", "16"]
+    v.customize ["modifyvm", :id, "--nic2", "hostonly", "--nictype2", "82540EM", "--cableconnected2", "on", "--hostonlyadapter2", "vboxnet0"]
+    v.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+#   v.customize ["modifyvm", :id, "--accelerate3d", "on"]
+#   v.customize ["modifyvm", :id, "--accelerate2dvideo", "on"]
+#   v.customize ["modifyvm", :id, "--audio", "dsound"]
+  end
+
+# Specific settings for box "vb-01":
+  config.vm.define "vb-01" do |config|
+    config.vm.host_name = "vb-01"
+    config.vm.network "forwarded_port", id: 'ssh', guest: 22, host: 2222
+#   config.vm.provision "shell", path: "desktop.sh"
+#   config.vm.provision "shell", inline: "apt-get install curl"
+    config.vm.provision "shell",
+      inline: "curl https://raw.githubusercontent.com/rudibroekhuizen/puppet-role_base/master/files/bootstrap.sh > bootstrap.sh; chmod +x bootstrap.sh;./bootstrap.sh server-postgresql"
+  end
+
+# Specific settings for box "vb-02":
+  config.vm.define "vb-02" do |config|
+    config.vm.host_name = "vb-02"
+    config.vm.network "forwarded_port", id: 'ssh', guest: 22, host: 2223
+#   config.vm.provision "shell", path: "desktop.sh"
+    config.vm.provision "shell",
+      inline: "curl https://raw.githubusercontent.com/rudibroekhuizen/puppet-role_base/master/files/bootstrap.sh > bootstrap.sh; chmod +x bootstrap.sh;./bootstrap.sh server-postgresql"
+  end
+
+end
