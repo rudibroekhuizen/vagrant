@@ -1,0 +1,9 @@
+Vagrant.configure("2") do |config|
+  
+  config.vm.box = "peru/ubuntu-18.04-desktop-amd64"
+  config.vm.define 'workstation1' do |config|
+    config.vm.provider 'virtualbox' do |vb|
+      vb.name = "workstation1"
+    end
+  end
+end
